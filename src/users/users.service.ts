@@ -17,9 +17,7 @@ export class UsersService {
     const { email, password, name } = createUserDto;
 
     // 이메일 중복 체크
-    const existingUser = await this.usersRepository.findOne({
-      where: { email },
-    });
+    const existingUser = await this.findByEmail(email);
     if (existingUser) {
       throw new ConflictException('이미 존재하는 이메일입니다.');
     }
@@ -56,6 +54,10 @@ export class UsersService {
     });
   }
 
+  async findByEmail(email: string) {
+    return this.usersRepository.findOne({ where: { email } });
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
@@ -63,7 +65,8 @@ export class UsersService {
     }
 
     if (updateUserDto.password) {
-      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+      const salt = await bcrypt.genSalt(10);
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, salt);
     }
 
     await this.usersRepository.update(id, updateUserDto);
