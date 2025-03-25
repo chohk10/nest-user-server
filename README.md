@@ -1,73 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# MindsAI Entrance Server
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NestJS 기반의 MindsAI 입사 과제 서버입니다.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 주요 기능
 
-## Description
+- 사용자 인증 (JWT 기반)
+  - 회원가입
+  - 로그인/로그아웃
+  - 쿠키 기반 토큰 관리
+- 사용자 관리
+  - 사용자 정보 조회/수정/삭제
+  - 권한 기반 접근 제어 (OwnerGuard)
+- API 문서화 (Swagger)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 기술 스택
 
-## Installation
+- NestJS
+- TypeORM
+- MySQL
+- JWT
+- Swagger
+- Docker
 
+## 시작하기
+
+### 도커 실행 (권장)
+
+1. 환경 변수 설정
 ```bash
-$ npm install
+# 환경 변수 파일 생성
+cp .env.example .env
+
+# .env 파일을 열어 내용 설정
 ```
 
-## Running the app
-
+2. 도커 컴포즈로 서버와 데이터베이스 실행
 ```bash
-# development
-$ npm run start
+# 서비스 실행
+pnpm docker:up
 
-# watch mode
-$ npm run start:dev
+# 로그 확인
+pnpm docker:logs
 
-# production mode
-$ npm run start:prod
+# 서비스 재시작
+pnpm docker:restart
+
+# 서비스 중지
+pnpm docker:down
 ```
 
-## Test
+### API 문서
+
+서버 실행 후 다음 URL에서 API 문서를 확인할 수 있습니다:
+- Swagger UI: http://localhost:3000/api-doc
+
+## 테스트
 
 ```bash
-# unit tests
-$ npm run test
+# 단위 테스트
+pnpm test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# 테스트 커버리지
+pnpm test -- --coverage
 ```
 
-## Support
+## 라이선스
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE)
