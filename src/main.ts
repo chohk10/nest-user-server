@@ -12,10 +12,14 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+
+  // Cookie Parser 미들웨어 추가
+  app.use(cookieParser());
 
   // Global Pipes
   app.useGlobalPipes(
@@ -49,6 +53,11 @@ async function bootstrap() {
       },
       'access-token',
     )
+    .addCookieAuth('access_token', {
+      type: 'apiKey',
+      in: 'cookie',
+      name: 'access_token',
+    })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
