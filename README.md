@@ -1,6 +1,6 @@
-# MindsAI Entrance Server
+# Test Server
 
-NestJS 기반의 MindsAI 입사 과제 서버입니다.
+NestJS 기반의 입사 과제 서버입니다.
 
 ## 주요 기능
 
@@ -63,7 +63,3 @@ pnpm test
 # 테스트 커버리지
 pnpm test -- --coverage
 ```
-
-## 라이선스
-
-[MIT licensed](LICENSE)
